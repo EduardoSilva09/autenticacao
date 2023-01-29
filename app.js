@@ -8,23 +8,22 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+global.authenticationMiddleware = () => {
+  return function (req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+    res.redirect('/login?fail=true')
+  }
+}
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-require('./auth', passport)
+require('./auth')(passport)
 app.use(session({
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_CONNECTION,
@@ -42,15 +41,15 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-global.authenticationMiddleware = () => {
-  return function (req, res, next) {
-    if (eq.isAuthenticated()) {
-      return next()
-    }
-    res.redirect('/login?fail=true')
-  }
-}
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', loginRouter);
 app.use('/index', indexRouter);
