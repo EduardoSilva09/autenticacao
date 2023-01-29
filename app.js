@@ -1,3 +1,7 @@
+const passport = require('passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -19,6 +23,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+require('./auth', passport)
+app.use(session({
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_CONNECTION,
+    dbName: process.env.MONGO_DB,
+    ttl: 1800,
+    autoRemove: 'native'
+  }),
+  secret: process.env.MONGO_SOTE_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 30 * 60 * 1000
+  }
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/', loginRouter);
 app.use('/index', indexRouter);
