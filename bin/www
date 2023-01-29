@@ -1,5 +1,17 @@
 #!/usr/bin/env node
 
+require('dotenv-safe').config()
+
+async function connect() {
+  const { MongoClient } = require('mongodb')
+  const client = new MongoClient(process.env.MONGO_CONNECTION)
+  await client.connect()
+  global.db = client.db(process.env.MONGO_DB)
+  console.log('Established connection to database')
+}
+
+connect()
+
 /**
  * Module dependencies.
  */
