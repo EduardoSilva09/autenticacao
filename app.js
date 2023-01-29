@@ -43,6 +43,15 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+global.authenticationMiddleware = () => {
+  return function (req, res, next) {
+    if (eq.isAuthenticated()) {
+      return next()
+    }
+    res.redirect('/login?fail=true')
+  }
+}
+
 app.use('/', loginRouter);
 app.use('/index', indexRouter);
 app.use('/users', usersRouter);

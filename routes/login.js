@@ -1,14 +1,5 @@
 const passport = require('passport')
 
-function authenticationMiddleware() {
-    return function (req, res, next) {
-        if (eq.isAuthenticated()) {
-            return next()
-        }
-        res.redirect('/login?fail=true')
-    }
-}
-
 const express = require('express');
 const router = express.Router();
 
