@@ -4,14 +4,14 @@ const LocalStrategy = require('passport-local').Strategy
 
 module.exports = function (passport) {
     function findUser(username, callback) {
-        global.db.collection('users').findOne({ 'usename': username }, function (err, doc) {
+        global.db.collection('users').findOne({ username }, function (err, doc) {
             callback(err, doc)
         })
     }
 
     function findUserById(id, callback) {
         const objectId = require('mongodb').ObjectId
-        global.db.collection('users').findOne({ '_id': objectId(id) }, function (err, doc) {
+        global.db.collection('users').findOne({ _id: objectId(id) }, function (err, doc) {
             callback(err, doc)
         })
     }
@@ -20,7 +20,7 @@ module.exports = function (passport) {
         done(null, user._id)
     })
 
-    passport.deserializeUser(function (user, done) {
+    passport.deserializeUser(function (id, done) {
         findUserById(id, function (err, user) {
             done(err, user)
         })
