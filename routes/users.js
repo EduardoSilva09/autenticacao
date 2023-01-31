@@ -24,4 +24,8 @@ router.post('/signup', function (req, res, next) {
   })
 });
 
+router.get('/forgot', function (req, res, next) {
+  res.render('forgot', {})
+});
+
 module.exports = router;
