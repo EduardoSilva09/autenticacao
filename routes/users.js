@@ -15,7 +15,12 @@ router.post('/signup', function (req, res, next) {
   db.createUser(username, password, email, (err, result) => {
     if (err)
       return res.redirect('/users/singup?fail=true')
-    res.redirect('/')
+    else {
+      message = `Obrigado por se cadastrar ${username}!`
+      subject = 'Cadastro Realizado com sucesso!'
+      require('../mail')(email, subject, message)
+      res.redirect('/')
+    }
   })
 });
 
