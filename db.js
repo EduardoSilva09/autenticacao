@@ -9,7 +9,7 @@ function resetPassword(email, callback) {
     const utils = require('./utils')
     const newPass = utils.generatePassword()
     const cryptoPassword = bcrypt.hashSync(newPass, 10)
-    global.db.collection('users').updateOne({ email }, { password: cryptoPassword }, (res, err) => {
+    global.db.collection('users').updateOne({ email }, { $set: { password: cryptoPassword } }, (res, err) => {
         callback(res, err, newPass)
     })
 }
