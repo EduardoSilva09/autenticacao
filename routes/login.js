@@ -9,8 +9,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-    if (req.query.fail)
-        res.render('login', { message: 'Usuário e/ou senha incorretos!' })
+    if (req.query.fail)    
+        res.render('login', { message: 'Usuário e/ou senha incorretos!', error : true })
+    else if (req.query.reset)
+    res.render('login', { message: 'A sua nova senha chegará em instantes!', error: false })
     else
         res.render('login', { message: null })
 });
