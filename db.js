@@ -5,4 +5,13 @@ function createUser(username, password, email, callback) {
     global.db.collection('users').insertOne({ username, password: cryptoPassword, email }, callback)
 }
 
-module.exports = { createUser }
+function resetPassword(email, callback) {
+    const utils = require('./utils')
+    const newPass = utils.generatePassword()
+    const cryptoPassword = bcrypt.hashSync(newPass, 10)
+    global.db.collection('users').updateOne({ email }, { password: cryptoPassword }, (res, err) => {
+        callback(res, err, newPass)
+    })
+}
+
+module.exports = { createUser, resetPassword }
