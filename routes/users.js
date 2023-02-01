@@ -30,7 +30,7 @@ router.post('/forgot', function (req, res, next) {
   db.resetPassword(email, (err, result, password) => {
     if (err) {
       console.error(err);
-      return res.redirect('/users/forgot?fail=true')
+      return res.redirect('/login?reset=true')
     } else {
       let message = `Olá, sua nova senha é ${password}. sua senha antiga não tem mais validade!`
       let subject = 'Sua Senha foi alterada'
