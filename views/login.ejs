@@ -19,15 +19,14 @@
         <p>
         <% if(error) { %>
             <label style="color: red;"> <%= message %> </label>
-        <% } %>
-        <% else { %>
+        <% } else { %>
             <label style="color: green;"> <%= message %> </label>
         <% } %>
         </p>
-        <% } %>
-            <p>
-                <a href="/users/forgot">Esqueceu a senha</a> | <a href="/users/signup">Não possui cadastro?</a>
-            </p>
+    <% } %>
+    <p>
+        <a href="/users/forgot">Esqueceu a senha</a> | <a href="/users/signup">Não possui cadastro?</a>
+    </p>
 </body>
 
 </html>

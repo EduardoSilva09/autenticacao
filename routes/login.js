@@ -9,10 +9,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-    if (req.query.fail)    
-        res.render('login', { message: 'Usuário e/ou senha incorretos!', error : true })
+    if (req.query.fail)
+        res.render('login', { message: 'Usuário e/ou senha incorretos!', error: true })
     else if (req.query.reset)
-    res.render('login', { message: 'A sua nova senha chegará em instantes!', error: false })
+        res.render('login', { message: 'A sua nova senha chegará em instantes!', error: false })
     else
         res.render('login', { message: null })
 });
@@ -20,5 +20,13 @@ router.get('/login', function (req, res, next) {
 router.post('/login',
     passport.authenticate('local', { successRedirect: '/index', failureRedirect: '/login?fail=true' })
 )
+
+router.post('/logoff', function (req, res, next) {
+    req.logOut(function (err) {
+        if (err)
+            return next(err)
+        res.redirect('/login')
+    })
+})
 
 module.exports = router;
