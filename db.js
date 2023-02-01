@@ -14,4 +14,8 @@ function resetPassword(email, callback) {
     })
 }
 
-module.exports = { createUser, resetPassword }
+function findAllUsers(callback) {
+    global.db.collection('users').find().toArray(callback)
+}
+
+module.exports = { createUser, resetPassword, findAllUsers }
