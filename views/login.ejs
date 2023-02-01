@@ -17,9 +17,12 @@
     </form>
     <% if(message) { %>
         <p>
-            <label style="color: red;">
-                <%= message %>
-            </label>
+        <% if(error) { %>
+            <label style="color: red;"> <%= message %> </label>
+        <% } %>
+        <% else { %>
+            <label style="color: green;"> <%= message %> </label>
+        <% } %>
         </p>
         <% } %>
             <p>
