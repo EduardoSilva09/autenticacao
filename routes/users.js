@@ -16,8 +16,24 @@ router.post('/signup', function (req, res, next) {
     if (err)
       return res.redirect('/users/singup?fail=true')
     else {
-      message = `Obrigado por se cadastrar ${username}!`
-      subject = 'Cadastro Realizado com sucesso!'
+      let message = `Obrigado por se cadastrar ${username}!`
+      let subject = 'Cadastro Realizado com sucesso!'
+      require('../mail')(email, subject, message)
+      res.redirect('/')
+    }
+  })
+});
+
+router.post('/forgot', function (req, res, next) {
+  const db = require('../db')
+  const { email } = req.body
+  db.resetPassword(email, (err, result, password) => {
+    if (err) {
+      console.error(err);
+      return res.redirect('/users/forgot?fail=true')
+    } else {
+      let message = `Olá, sua nova senha é ${password}. sua senha antiga não tem mais validade!`
+      let subject = 'Sua Senha foi alterada'
       require('../mail')(email, subject, message)
       res.redirect('/')
     }
