@@ -11,8 +11,8 @@ router.get('/signup', function (req, res, next) {
 
 router.post('/signup', function (req, res, next) {
   const db = require('../db')
-  const { username, password, email } = req.body
-  db.createUser(username, password, email, (err, result) => {
+  const { username, password, email, profile } = req.body
+  db.createUser(username, password, email, profile, (err, result) => {
     if (err)
       return res.redirect('/users/singup?fail=true')
     else {
