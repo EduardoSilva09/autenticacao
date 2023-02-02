@@ -12,8 +12,8 @@
   <h1>
     <%= title %>
   </h1>
-  <p>Welcome to <%= title %>
-  </p>
+  <p>Welcome to <%= title %> </p>
+  <p><%= qtd %> Usuários cadastrados! </p>
   <table>
     <tr style="background-color: gray;">
       <td>Nome</td>
@@ -37,9 +37,15 @@
       <td colspan="2">  
         <% 
         for (let i = 1; i <= qtdPaginas; i++){
+          if (pagina === i) {
+            %> 
+              <%= i %> | 
+            <% 
+          } else {
         %>      
           <a href="/index/<%= i %>"><%= i %></a> | 
         <% 
+          }
         }
         %>      
       </td>
