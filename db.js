@@ -15,7 +15,7 @@ function resetPassword(email, callback) {
 }
 
 function countAll(callback) {
-    global.db.collection('users').count(callback)
+    global.db.collection('users').countDocuments(callback)
 }
 
 const TAMANHO_PAGINA = 5
