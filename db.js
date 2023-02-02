@@ -14,8 +14,10 @@ function resetPassword(email, callback) {
     })
 }
 
-function findAllUsers(callback) {
-    global.db.collection('users').find().toArray(callback)
+const TAMANHO_PAGINA = 5
+function findAllUsers(pagina, callback) {
+    const totalSkip = (pagina - 1) * TAMANHO_PAGINA
+    global.db.collection('users').find().skip(totalSkip).limit(TAMANHO_PAGINA).toArray(callback)
 }
 
-module.exports = { createUser, resetPassword, findAllUsers }
+module.exports = { createUser, resetPassword, findAllUsers, TAMANHO_PAGINA }
