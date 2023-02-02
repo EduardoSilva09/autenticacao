@@ -13,7 +13,7 @@ router.get('/:pagina?', global.authenticationMiddleware(), function (req, res, n
 
     db.findAllUsers(pagina, (err, docs) => {
       if (err) return console.error(err);
-      res.render('index', { title: req.user.username, docs, qtd, qtdPaginas, pagina });
+      res.render('index', { title: req.user.username, docs, qtd, qtdPaginas, pagina, profile: req.user.profile });
     })
   })
 
