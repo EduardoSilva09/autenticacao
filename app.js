@@ -10,7 +10,7 @@ const logger = require('morgan');
 
 global.authenticationMiddleware = () => {
   return function (req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && require('./permissions')(req)) {
       return next()
     }
     res.redirect('/login?fail=true')
