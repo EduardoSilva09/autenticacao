@@ -9,8 +9,11 @@ module.exports = (request) => {
     if (!user) return false
 
     const profile = user.profile || '1'
-    const originalUrl = request.originalUrl
+    let originalUrl = request.originalUrl
 
+    if (request.params.pagina)
+        originalUrl = originalUrl.replace(`/${request.params.pagina}`,'')
+    
     switch (originalUrl) {
         case '/': return true
         case '/index': return true
