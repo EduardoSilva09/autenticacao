@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Senha</title>
-</head>
-<body>
-    <h1>Lembrar Senha</h1>
+<%- include("top.ejs") %>
     <form action="/users/forgot" method="post">
         <p>Digite o email de cadatro abaixo para receber novas credenciais de acesso: </p>
         <input type="email" name="email">
@@ -16,5 +7,4 @@
     <p>
         Caso não possua cadastro <a href="/users/signup">Clique aqui</a>
     </p>
-</body>
-</html>
+<%- include("bottom.ejs") %>
