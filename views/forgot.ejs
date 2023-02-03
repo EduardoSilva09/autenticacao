@@ -1,10 +1,10 @@
 <%- include("top.ejs") %>
     <form action="/users/forgot" method="post">
         <p>Digite o email de cadatro abaixo para receber novas credenciais de acesso: </p>
-        <input type="email" name="email">
-        <input type="submit" value="Send">
+        <input type="email" name="email" />
+        <input type="submit" value="Send" class="btn btn-primary" />
     </form>
     <p>
-        Caso não possua cadastro <a href="/users/signup">Clique aqui</a>
+        Caso não possua cadastro <a href="/users/signup" >Clique aqui</a>
     </p>
 <%- include("bottom.ejs") %>

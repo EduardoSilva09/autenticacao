@@ -13,7 +13,7 @@
           <td><a href="/edit/<%= docs[i]._id %>"><%= docs[i].username %></a></td>
           <td>
             <form action="/delete/<%= docs[i]._id %>" method="post">
-              <input type="submit" value="Excluir">
+              <input type="submit" value="X" class="btn btn-danger">
             </form>
           </td>
         </tr>
@@ -40,14 +40,14 @@
   </table>
 
   <p>
-  <a href="/users/signup">Cadastrar</a>
+  <a href="/users/signup" class="btn btn-primary">Cadastrar</a>
   <form action="/logoff" method="post">
-    <input type="submit" value="Logoff">
+    <input type="submit" value="Logoff" class="btn">
   </form>
   </p>
   <p>
     <% if(profile === '2'){ %>
-      <a href="/reports">ver relatórios</a>
+      <a href="/reports" class="btn">ver relatórios</a>
     <% } %>
   </p>
 <%- include("bottom.ejs") %>
