@@ -26,11 +26,10 @@
             <a href="/" class="btn">Cancelar</a>
         </form>        
         <% if(message) { %>
-        <p>
-            <label style="color:red">
-                <%= message %>
-            </label>
-        </p>
+        <div class="alert alert-danger">
+            <%= message %>
+        </div>
+            
         <% } %>
     </div>
 <%- include("bottom.ejs") %>

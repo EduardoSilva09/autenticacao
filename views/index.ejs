@@ -1,42 +1,50 @@
 <%- include("top.ejs") %>
   <p>Welcome to <%= title %> </p>
-  <p><%= qtd %> Usuários cadastrados! </p>
-  <table>
-    <tr style="background-color: gray;">
-      <td>Nome</td>
-      <td>Ações</td>
-    </tr>
-    <% if (docs) { 
-      for(let i=0; i < docs.length; i++){ 
-        %>
-        <tr>
-          <td><a href="/edit/<%= docs[i]._id %>"><%= docs[i].username %></a></td>
-          <td>
-            <form action="/delete/<%= docs[i]._id %>" method="post">
-              <input type="submit" value="X" class="btn btn-danger">
-            </form>
-          </td>
-        </tr>
-        <% 
-      } 
-    } %>
-    <tr>
-      <td colspan="2">  
-        <% 
-        for (let i = 1; i <= qtdPaginas; i++){
-          if (pagina === i) {
-            %> 
-              <%= i %> | 
-            <% 
-          } else {
-        %>      
-          <a href="/index/<%= i %>"><%= i %></a> | 
-        <% 
+  <div class="alert alert-info">
+    <%= qtd %> Usuários cadastrados!
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (docs) { 
+        for(let i=0; i < docs.length; i++){ 
+          %>
+          <tr>
+            <td><a href="/edit/<%= docs[i]._id %>"><%= docs[i].username %></a></td>
+            <td>
+              <form action="/delete/<%= docs[i]._id %>" method="post">
+                <input type="submit" value="X" class="btn btn-danger">
+              </form>
+            </td>
+          </tr>
+          <% 
+        } 
+      } %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">  
+          <% 
+          for (let i = 1; i <= qtdPaginas; i++){
+            if (pagina === i) {
+              %> 
+                <%= i %> | 
+              <% 
+            } else {
+          %>      
+            <a href="/index/<%= i %>"><%= i %></a> | 
+          <% 
+            }
           }
-        }
-        %>      
-      </td>
-    </tr>
+          %>      
+        </td>
+      </tr>
+    </tfoot>
   </table>
 
   <p>
