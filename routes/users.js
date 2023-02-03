@@ -4,9 +4,9 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/signup', function (req, res, next) {
   if (req.query.fail)
-    res.render('signup', { message: 'Falha ao realizar cadastro do usuário!' })
+    res.render('signup', { title: 'Signup', message: 'Falha ao realizar cadastro do usuário!' })
   else
-    res.render('signup', { message: null })
+    res.render('signup', { title: 'Signup', message: null })
 });
 
 router.post('/signup', function (req, res, next) {
@@ -41,7 +41,7 @@ router.post('/forgot', function (req, res, next) {
 });
 
 router.get('/forgot', function (req, res, next) {
-  res.render('forgot', {})
+  res.render('forgot', { title: 'Forgot' })
 });
 
 module.exports = router;

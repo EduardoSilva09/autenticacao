@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>
-    <%= title %>
-  </title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-  <h1>
-    <%= title %>
-  </h1>
+<%- include("top.ejs") %>
   <p>Welcome to <%= title %> </p>
   <p><%= qtd %> Usuários cadastrados! </p>
   <table>
@@ -63,6 +50,4 @@
       <a href="/reports">ver relatórios</a>
     <% } %>
   </p>
-</body>
-
-</html>
+<%- include("bottom.ejs") %>
