@@ -3,8 +3,8 @@
   <div class="alert alert-info">
     <%= qtd %> Usuários cadastrados!
   </div>
-  <table class="table">
-    <thead>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="thead-dark">
       <tr>
         <th>Nome</th>
         <th>Ações</th>
@@ -26,36 +26,36 @@
         } 
       } %>
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="2">  
-          <% 
-          for (let i = 1; i <= qtdPaginas; i++){
-            if (pagina === i) {
-              %> 
-                <%= i %> | 
-              <% 
-            } else {
-          %>      
-            <a href="/index/<%= i %>"><%= i %></a> | 
-          <% 
-            }
-          }
-          %>      
-        </td>
-      </tr>
-    </tfoot>
   </table>
-
-  <p>
-  <a href="/users/signup" class="btn btn-primary">Cadastrar</a>
+  <nav>
+    <ul class="pagination">
+      <% 
+        for (let i = 1; i <= qtdPaginas; i++){
+      %>   
+        <li class="page-item">
+          <a class="page-link" href="/index/<%= i %>">
+            <%= i %>
+          </a> 
+        </li> 
+      <% 
+        }
+      %>   
+    </ul>
+  </nav>
   <form action="/logoff" method="post">
-    <input type="submit" value="Logoff" class="btn">
+    <div class="row">
+      <div class="col-sm-2">
+        <a href="/users/signup" class="btn btn-primary">Cadastrar</a>
+      </div>
+      <div class="col-sm-2">
+        <input type="submit" value="Logoff" class="btn btn-light">
+      </div>
+      <% if(profile === '2'){ %>
+        <div class="col-sm-2">
+          <a href="/reports" class="btn  btn-light">Relatórios</a>
+        </div>
+      <% } %>
+    </div>
   </form>
-  </p>
-  <p>
-    <% if(profile === '2'){ %>
-      <a href="/reports" class="btn">ver relatórios</a>
-    <% } %>
-  </p>
+
 <%- include("bottom.ejs") %>
